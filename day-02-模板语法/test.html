@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>02_模板语法</title>
+    <meta charset="UTF-8">
+    <title>02_模板语法</title>
 </head>
 <body>
 <!--
@@ -30,50 +30,36 @@
 -->
 
 <div id="app">
-  <h2>1. 双大括号表达式</h2>
+    <h2>1. 双大括号表达式</h2>
     <p>{{msg}}</p>
-  <h2>2. 指令一: 强制数据绑定</h2>
-  <img v-bind:src="imageUrl">
-  <img :src="imageUrl">
-  <h2>3. 指令二: 绑定事件监听</h2>
-  <button v-on:click="test">点我</button>
-  <button @click="test1('abc')">点我</button>
-  <button @click="test1(msg)">点我</button>
-<!--  <button v-on:click="test">点我</button>-->
-<!--  <button @click="test">点我</button>-->
-
+    <p v-html="msg"></p>
+    <h2>2. 指令一: 强制数据绑定</h2>
+    <img v-bind:src="imageUrl">
+    <img :src="imageUrl">
+    <h2>3. 指令二: 绑定事件监听</h2>
+    <button v-on:click="test">点我</button>
+    <button @click="test1('abc')">点我</button>
+    <button @click="test1(msg)">点我</button>
 </div>
 
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
-    el: '#app',
-    data: {
-      msg: "I am ListenerSun ",
-      imageUrl: 'http://file02.16sucai.com/d/file/2015/0408/779334da99e40adb587d0ba715eca102.jpg'
-    },
-    methods: {
-      test(){
-        alert("Fuck Fuck Fuck !")
-      },
-      test1(content){
-        alert(content)
-      }
-    }
-  })
-  // new Vue({
-  //   el: '#app',
-  //   data: {
-  //     content: 'NBA I Love This Game',
-  //     url: 'http://www.atguigu.com'
-  //   },
-  //   methods: {
-  //     test () {
-  //       alert('好啊!!!')
-  //     }
-  //   }
-  // })
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "I am ListenerSun ",
+            imageUrl: 'http://file02.16sucai.com/d/file/2015/0408/779334da99e40adb587d0ba715eca102.jpg'
+        },
+        methods: {
+            test() {
+                alert("Fuck Fuck Fuck !")
+            },
+            test1(content) {
+                alert(content)
+            }
+        }
+    })
 </script>
 </body>
 </html>
