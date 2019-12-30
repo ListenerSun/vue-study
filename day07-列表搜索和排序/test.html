@@ -23,9 +23,9 @@
         {{p.name}}--------{{p.age}}
       </li>
     </ul>
-  <button>按照年龄升序</button>
-  <button>按照年龄降序序</button>
-  <button>按照年龄原来顺序</button>
+  <button @click = "setOrderType(0)">按照年龄升序</button>
+  <button @click = "setOrderType(1)">按照年龄降序序</button>
+  <button @click = "setOrderType(2)">按照年龄原来顺序</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
@@ -34,19 +34,42 @@
     el: '#demo',
     data: {
       searchName:'',
+      orderType: '',
       persons: [
         {name:'sqt',age:13},
+        {name:'sqz',age:14},
+        {name:'srt',age:18},
         {name:'ly',age:12},
         {name:'cl',age:11}
       ]
     },
+    methods:{
+      setOrderType(orderType){
+        this.orderType = orderType;
+      }
+    },
+
     // 计算属性配置: 值为对象
     //什么时候执行: 1:初始化的时候执行 2:相关属性变化时候
     computed: {
       fPersons(){
-        const {searchName,persons} = this
-        return persons.filter(p => p.name.indexOf(searchName) != -1)
-      }
+        const {searchName,persons,orderType} = this;
+        let personsResult;
+        personsResult = persons.filter(p => p.name.indexOf(searchName) != -1)
+        if (orderType != 2){
+          personsResult.sort(function (p1,p2) {
+            if (orderType == 0){
+              return p1.age-p2.age;
+            }else {
+              return p2.age-p1.age;
+            }
+
+          })
+        }
+        return personsResult;
+      },
+
+
 
     }
   })
