@@ -11,7 +11,7 @@
     </header>
     <div class="container">
       <Add :addComment="addComment"></Add>
-      <List :comments="comments"></List>
+      <List :comments="comments" :deleteItem="deleteItem"></List>
     </div>
   </div>
 </template>
@@ -47,8 +47,12 @@ export default {
   },
   methods:{
     //添加评论
-    addComment(comment){
+    addComment (comment){
       this.comments.unshift(comment)
+    },
+    //删除评论
+    deleteItem (index){
+      this.comments.splice(index, 1)
     }
   }
 }
