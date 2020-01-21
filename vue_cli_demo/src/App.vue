@@ -1,62 +1,45 @@
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <Add :addComment="addComment"></Add>
-      <List :comments="comments" :deleteItem="deleteItem"></List>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader/>
+      <TodoList :todos="todos"/>
+      <TodoFooter/>
     </div>
   </div>
 </template>
 
 <script>
-// 引入组件
-import Add from './components/Add'
-import List from './components/List'
-
-export default {
-  /* 映射组件 */
-  components: {
-    Add,
-    List
-  },
-  data (){
-    return {
-      comments:[ //数据在哪个组件中,更新数据的行为(方法)就应该定义在哪个组件中
-        {
-          name: 'Listener',
-          content: 'I Am ListenerSun'
-        },
-        {
-          name: 'WBY',
-          content: 'I Am WBY'
-        },
-        {
-          name: 'XTP',
-          content: 'I am XTP'
-        }
-      ]
-    }
-  },
-  methods:{
-    //添加评论
-    addComment (comment){
-      this.comments.unshift(comment)
+  import TodoHeader from './components/TodoHeader'
+  import TodoFooter from './components/TodoFooter'
+  import TodoList from './components/TodoList'
+  export default {
+    data(){
+      return{
+        todos :[
+          {title:'吃饭',select:false},
+          {title:'睡觉',select:false},
+          {title:'打豆豆',select:false},
+          {title:'谈恋爱',select:false}
+          ]
+      }
     },
-    //删除评论
-    deleteItem (index){
-      this.comments.splice(index, 1)
+    components: {
+      TodoHeader,
+      TodoFooter,
+      TodoList
     }
   }
-}
 </script>
 
-<style>
+<style scoped>
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
