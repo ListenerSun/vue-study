@@ -1,19 +1,44 @@
 <template>
-  <li>
+  <li @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)" :style="{background: bgColor}">
     <label>
       <input type="checkbox" v-model="todo.select"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" @click="deleteItem" v-show="isShow">删除</button>
   </li>
 
 </template>
-
 <script>
   export default {
     props: {
       todo: Object,
-      index: Number
+      index: Number,
+      deleteTodo: Function
+    },
+    data (){
+      return {
+        bgColor: 'white',
+        isShow: false
+      }
+    },
+    methods: {
+      handleEnter(isEnter) {
+        if (isEnter){
+          this.bgColor = 'gray'
+          this.isShow = true
+        } else {
+          this.bgColor = 'white'
+          this.isShow = false
+        }
+      },
+      //删除 项目
+      deleteItem (){
+        const {todo,index,deleteTodo} = this
+        if(window.confirm(`确认删除${todo.title}吗?`)){
+          deleteTodo(index)
+        }
+      }
+
     }
   }
 </script>
@@ -23,8 +48,8 @@
   li {
     list-style: none;
     height: 36px;
-    line-height: 36px;
-    padding: 0 5px;
+    line-height: 0px;
+    padding: 8px 5px;
     border-bottom: 1px solid #ddd;
   }
 
@@ -42,7 +67,6 @@
 
   li button {
     float: right;
-    display: none;
     margin-top: 3px;
   }
 
@@ -53,14 +77,5 @@
   li:last-child {
     border-bottom: none;
   }
-  .todo-empty {
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    padding-left: 5px;
-    margin-top: 10px;
-  }
-
 
 </style>

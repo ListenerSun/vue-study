@@ -1,8 +1,8 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader/>
-      <TodoList :todos="todos"/>
+      <TodoHeader :addTodo="addTodo"/>
+      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
       <TodoFooter/>
     </div>
   </div>
@@ -14,13 +14,21 @@
   import TodoList from './components/TodoList'
   export default {
     data(){
-      return{
+      return {
         todos :[
           {title:'吃饭',select:false},
           {title:'睡觉',select:false},
           {title:'打豆豆',select:false},
           {title:'谈恋爱',select:false}
           ]
+      }
+    },
+    methods: {
+      addTodo (todo){
+        this.todos.unshift(todo)
+      },
+      deleteTodo (index){
+        this.todos.splice(index,1)
       }
     },
     components: {
