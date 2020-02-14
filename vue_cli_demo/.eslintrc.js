@@ -30,5 +30,8 @@ module.exports = {
     'key-spacing':'off',
     'spaced-comment':'off',
     'space-before-blocks':'off',
+    'comma-spacing':'off',
+    'space-before-function-paren':'off',
+    'keyword-spacing':'off',
   }
 }
