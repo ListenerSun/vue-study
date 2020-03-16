@@ -33,5 +33,11 @@ module.exports = {
     'comma-spacing':'off',
     'space-before-function-paren':'off',
     'keyword-spacing':'off',
+    'eslint-disable-next-line':'off',
+    //引号类型 `` "" ''
+    "quotes": [1, "single"],
+    // 使用 "" 关闭
+    "quotes": [0, "double"],
+    'semi': 0
   }
 }

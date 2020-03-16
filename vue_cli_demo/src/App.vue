@@ -1,53 +1,21 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
-      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
-      <TodoFooter/>
-    </div>
+  <div id="app">
+    <router-view></router-view>
+    <Main></Main>
   </div>
 </template>
 
 <script>
-  import TodoHeader from './components/TodoHeader'
-  import TodoFooter from './components/TodoFooter'
-  import TodoList from './components/TodoList'
-  export default {
-    data(){
-      return {
-        todos :[
-          {title:'吃饭',select:false},
-          {title:'睡觉',select:false},
-          {title:'打豆豆',select:false},
-          {title:'谈恋爱',select:false}
-          ]
-      }
-    },
-    methods: {
-      addTodo (todo){
-        this.todos.unshift(todo)
-      },
-      deleteTodo (index){
-        this.todos.splice(index,1)
-      }
-    },
-    components: {
-      TodoHeader,
-      TodoFooter,
-      TodoList
-    }
+import stuRegister from './views/student/stuRegister'
+import Main from './components/Main'
+export default {
+  name: 'App',
+  components: {
+    Main,
+    stuRegister
   }
+}
 </script>
 
-<style scoped>
-  /*app*/
-  .todo-container {
-    width: 600px;
-    margin: 0 auto;
-  }
-  .todo-container .todo-wrap {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+<style>
 </style>
